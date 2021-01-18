@@ -21,6 +21,7 @@
 
 window.addEventListener('DOMContentLoaded', () => {
   const start = document.querySelector('#start');
+
   //code added by Vineet 
   //submit button element
   const submitButton = document.querySelector("#btnSubmit");
@@ -30,11 +31,10 @@ window.addEventListener('DOMContentLoaded', () => {
   var counter=0;
   var id=null;
   //end code - Vineet 
+
   start.addEventListener('click', function (e) {
     document.querySelector('#quizBlock').style.display = 'block';
     start.style.display = 'none';
-
-    console.log('start counter');
 
     //code added by Vineet to implement timer
     counter=60000;
@@ -51,6 +51,7 @@ window.addEventListener('DOMContentLoaded', () => {
       }
     },1000);
   });
+  //end code -vineet
 
   // quizArray QUESTIONS & ANSWERS
   // q = QUESTION, o = OPTIONS, a = CORRECT ANSWER
@@ -114,7 +115,7 @@ window.addEventListener('DOMContentLoaded', () => {
         radioElement = document.querySelector('#' + r);
 
         if (quizItem.a == i) {
-          //change background color of li element here - added by Vineet Singh
+          //change background color of li element here - added by Vineet
           //change color to green
           liElement.style.backgroundColor='#87e6a0';
         }
@@ -122,7 +123,6 @@ window.addEventListener('DOMContentLoaded', () => {
         if (radioElement.checked) {
           // code for task 1 goes here - added by Vineet Singh
           if (quizItem.a == i) {
-            //change background color of li element here - added by Vineet Singh
             score++;  
           }
           else{
@@ -137,26 +137,21 @@ window.addEventListener('DOMContentLoaded', () => {
 
   // code added by Vineet Singh 
   // add an event listener for the submit button
-  //get the submit button element
-  
-
-  console.log(submitButton);
-  //add an event listener
   submitButton.addEventListener('click',()=>{
-    clearInterval(id);
-    submitButton.style.display='none';
-    document.querySelector('#btnReset').classList.remove('d-none');
-    document.querySelector('#time').style.display='none';
-    document.querySelector("#score").innerHTML=`Score: You got <strong> ${calculateScore()} </strong> correct answers out of a total of <strong> ${quizArray.length} </strong> answers in ${60-(counter/1000)} seconds.`;
+      //clear timer
+      clearInterval(id);
+      //hide submit button
+      submitButton.style.display='none';
+      //display reset button
+      document.querySelector('#btnReset').classList.remove('d-none');
+      //remove time message
+      document.querySelector('#time').style.display='none';
+      //display score
+      document.querySelector("#score").innerHTML=`Score: You got <strong> ${calculateScore()} </strong> correct answers out of a total of <strong> ${quizArray.length} </strong> answers in ${60-(counter/1000)} seconds.`;
   });
-  //end added code. 
-
- 
-  //add an event listener
+  //add an event listener for reset button
   resetButton.addEventListener('click',()=>location.reload());
   //end added code. 
-    // code added by Vineet Singh 
-    //hide the submit button
 
   // call the displayQuiz function
   displayQuiz();
